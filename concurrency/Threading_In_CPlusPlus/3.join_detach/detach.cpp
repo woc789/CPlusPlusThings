@@ -21,6 +21,7 @@ void run(int count) {
         cout << count << endl;
     }
     std::this_thread::sleep_for(chrono::seconds(3));
+    cout<<"我真服了"<<endl;
 }
 
 int main() {
@@ -30,5 +31,6 @@ int main() {
     if(t1.joinable())
         t1.detach();
     cout << "main() after" << endl;
+    std::this_thread::sleep_for(chrono::seconds(4));
     return 0;
 }

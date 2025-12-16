@@ -19,7 +19,9 @@ public:
         cout << "I am shape" << endl;
     }
 
-    virtual ~shape() {}
+    virtual ~shape() {
+        cout << "shape is died" <<endl;
+    }
 };
 
 class circle : public shape {
@@ -28,6 +30,10 @@ public:
 
     void print() {
         cout << "I am circle" << endl;
+    }
+
+    ~circle(){
+        cout << "circle is died" <<endl;
     }
 };
 

@@ -7,6 +7,21 @@
 #include <fstream>
 
 using namespace std;
+
+// vector<string> read_file_line(string &file_name){
+//     vector<string> lines;
+//     string line;
+
+//     ifstream file_handle(file_name.c_str());
+//     while(file_handle.good()&&!file_handle.eof()&&file_handle.peek()!=EOF){
+//         getline(file_handle,line);
+//         lines.push_back(line);
+//     }
+
+//     file_handle.close();
+
+//     return lines;
+// }
 vector<string> read_lines_from_file(string &file_name) {
     vector<string> lines;
     string line;
@@ -53,16 +68,25 @@ vector<string> * read_lines_from_file1_1(string &file_name) {
 }
 int main() {
     // get file name from the first argument
-    string file_name ("/home/light/CLionProjects/Morden_C++/CMakeLists.txt");
+    string file_name ("/home/wang/CPlusPlusThings/CMakeLists.txt");
     int count = read_lines_from_file(file_name).size();
+    vector<string> count2 =read_lines_from_file(file_name);
     cout << "File " << file_name << " contains " << count << " lines.";
+    cout << "--- 文件内容 ---" << endl;
+    for (const string& line : count2) {
+        cout << line << endl; 
+    }
+    cout << "--- 打印结束 ---" << endl;
 
     cout<<endl;
 //    string file_name1 ("/home/light/CLionProjects/Morden_C++/CMakeLists.txt");
 //    int count1 = read_lines_from_file1(file_name1)->size();
 //    cout << "File " << file_name << " contains " << count1 << " lines.";
-    string file_name1 ("/home/light/CLionProjects/Morden_C++/CMakeLists.txt");
+    string file_name1 ("/home/wang/CPlusPlusThings/CMakeLists.txt");
     int count1 = read_lines_from_file1_1(file_name1)->size();
-    cout << "File " << file_name << " contains " << count1 << " lines.";
+    cout << "File " << file_name << " contains " << count1 << " lines." << endl;
     return 0;
 }
+
+
+

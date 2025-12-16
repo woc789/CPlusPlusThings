@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <bits/unique_ptr.h>
 using namespace std;
 
 // pImpl: Pointer-to-Implementation
@@ -17,7 +18,7 @@ public:
     void bar();
 
 private:
-    private_foo *pImpl;
+    unique_ptr<private_foo> pImpl;
 };
 
 class private_foo {

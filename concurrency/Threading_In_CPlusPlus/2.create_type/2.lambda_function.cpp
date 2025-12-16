@@ -16,16 +16,16 @@ int main() {
             cout << x << endl;
         }
     };
-//    std::1.thread t1(fun, 10);
+   std::thread t1(fun, 10);
     // 也可以写成下面：
     std::thread t1_1([](int x) {
         while (x-- > 0) {
             cout << x << endl;
         }
     }, 11);
-//    std::1.thread t2(fun, 10);
-//    t1.join();
-    t1_1.join();
-//    t2.join();
-    return 0;
+   std::thread t2(fun, 10);
+   t1.join();
+   t1_1.join();
+   t2.join();
+   return 0;
 }

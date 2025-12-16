@@ -5,6 +5,11 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <vector>
+#include <stddef.h>
+#include <functional>
+#include <algorithm>
+
 
 using namespace std::chrono;
 using namespace std;
@@ -19,19 +24,29 @@ using namespace std;
  */
 
 using ull = unsigned long long;
-ull OddSum = 0;
-ull EvenSum = 0;
+// ull OddSum = 0;
+// ull EvenSum = 0;
+
+struct alignas(64) PaddedSum {
+    ull sum = 0;
+};
+
+// 使用填充后的结构体作为全局变量
+PaddedSum OddSum_padded;
+PaddedSum EvenSum_padded;
+
+std::vector<std::thread> threads(2);
 
 void findEven(ull start, ull end) {
     for (ull i = start; i <= end; ++i)
         if ((i & 1) == 0)
-            EvenSum += i;
+            EvenSum_padded.sum += i;
 }
 
 void findOdd(ull start, ull end) {
     for (ull i = start; i <= end; ++i)
         if ((i & 1) == 1)
-            OddSum += i;
+            OddSum_padded.sum += i;
 }
 
 int main() {
@@ -40,17 +55,18 @@ int main() {
 
 
     auto startTime = high_resolution_clock::now();
-    std::thread t1(findEven,start,end);
-    std::thread t2(findOdd,start,end);
+    // std::thread t1(findEven,start,end);
+    // std::thread t2(findOdd,start,end);
+    threads[0]=std::thread(findEven,start,end);
+    threads[1]=std::thread(findOdd,start,end);
 
-    t1.join();
-    t2.join();
+    std::for_each(threads.begin(), threads.end(), std::mem_fn(&std::thread::join));
 
     auto stopTime = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stopTime - startTime);
 
-    cout << "OddSum : " << OddSum << endl;
-    cout << "EvenSum: " << EvenSum << endl;
+    cout << "OddSum : " << OddSum_padded.sum << endl;
+    cout << "EvenSum: " << EvenSum_padded.sum << endl;
     cout << "Sec: " << duration.count() / 1000000 << endl;
     return 0;
 }

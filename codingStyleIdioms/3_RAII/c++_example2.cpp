@@ -24,9 +24,16 @@ unique_ptr<vector<string>> read_lines_from_file(string &file_name) {
 }
 int main() {
     // get file name from the first argument
-    string file_name ("/home/light/CLionProjects/Morden_C++/CMakeLists.txt");
+    string file_name ("/home/wang/CPlusPlusThings/CMakeLists.txt");
     int count = read_lines_from_file(file_name).get()->size();
+
+    unique_ptr<vector<string>> file_ptr=read_lines_from_file(file_name);
+    vector<string> count1=*file_ptr;
     cout << "File " << file_name << " contains " << count << " lines.";
     cout<<endl;
+
+    for(const string & line :count1){
+        cout << line << endl;
+    }
     return 0;
 }

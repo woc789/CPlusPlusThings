@@ -37,3 +37,8 @@ cc_binary(
     srcs = ["c++_example2.cpp"],
     copts = ["-std=c++11"],
 )
+cc_binary(
+    name = "apple",
+    srcs = ["apple.cpp"],
+    copts = ["-std=c++11"],
+)

@@ -56,6 +56,6 @@ int main() {
 
     vector<int> v{3,4,5,6};
     int res=0;
-    cout<<parallel_accumlate(v.begin(),v.end(),res);
+    cout<<parallel_accumlate(v.begin(),v.end(),res)<<endl;
     return 0;
 }

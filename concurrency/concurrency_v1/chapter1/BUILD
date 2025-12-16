@@ -6,3 +6,8 @@ cc_binary(
     name = "1_helloworld",
     srcs = ["1_helloworld.cpp"],
 )
+
+cc_binary(
+    name = "picture",
+    srcs = ["picture.cpp"],
+)
