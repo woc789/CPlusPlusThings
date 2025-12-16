@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-
+  
 using namespace std;
 // 上一个例子:variadic5.cpp为递归调用
 // 当前这个例子为递归继承
